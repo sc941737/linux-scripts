@@ -1,11 +1,16 @@
 #!/bin/bash
 
 ifconfig
-
 ifconfig wlan0 down
 
-ifconfig wlan0 hw ether $(randmac)
+if [ -z $1 ];
+then
+	ifconfig wlan0 hw ether $(randmac)
+else
+	ifconfig wlan0 hw ether $1
+fi
 
 ifconfig wlan0 up
-
 ifconfig
+
+
