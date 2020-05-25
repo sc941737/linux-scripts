@@ -1,0 +1,41 @@
+#!/bin/bash
+
+echo "Copying all general scripts."
+sudo cp -r scripts/. /usr/local/bin/
+
+echo "Would you like to copy bash configuration and aliases as well? (y/n)"
+while read answer
+do
+        if [ $answer -eq "y" ]
+        then
+                sudo cp .bashrc .bash_aliases ~/
+        elif [ $answer -eq "n" ]
+        then
+                echo "Skipping."
+                break
+        else
+                echo "Please enter either 'n' for 'no' or 'y' for 'yes'."
+                continue
+        fi
+done
+
+
+echo "Would you like to copy Kali scripts as well? (y/n)"
+while read answer
+do
+	if [ $answer -eq "y" ]
+	then
+		sudo cp -r kali-pen-test/. /usr/local/bin/
+	elif [ $answer -eq "n" ]
+	then
+		echo "Finished."
+		break
+	else
+		echo "Please enter either 'n' for 'no' or 'y' for 'yes'."
+		continue
+	fi
+done
+
+
+
+exit
