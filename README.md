@@ -9,7 +9,7 @@ Clone, copy or download the repository.
 **Step 2**
 Enter the linux-scripts directory in the terminal and there run the following:
 ```
-./copyalsc
+./install
 ```
 This will automatically copy chosen scripts to your /usr/local/bin/ directory, simply follow the directions.
 
