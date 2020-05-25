@@ -7,21 +7,11 @@ Various random bash scripts.
 Clone, copy or download the repository.
 
 **Step 2**
-Copy or the .bashrc and .bash_aliases files to your home directory:
+Enter the linux-scripts directory in the terminal and there run the following:
 ```
-cp .bashrc .bash_aliases ~/
-// Don't ommit the forward slash!
+./copyalsc
 ```
-**Step 3**
-Copy any other script file you find useful to your /usr/local/bin/ directory. 
-For example the *newlos* file:
-```
-cp newlos /usr/local/bin
-```
-Or to copy the whole directory:
-```
-cp -r . /usr/local/bin
-```
+This will automatically copy the basic scripts to your /usr/local/bin directory and then prompt you whether you want to copy any additional scripts.
 
 
 # Aliases
