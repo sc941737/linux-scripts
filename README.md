@@ -11,7 +11,7 @@ Enter the linux-scripts directory in the terminal and there run the following:
 ```
 ./copyalsc
 ```
-This will automatically copy the basic scripts to your /usr/local/bin directory and then prompt you whether you want to copy any additional scripts.
+This will automatically copy chosen scripts to your /usr/local/bin/ directory, simply follow the directions.
 
 
 # Aliases
