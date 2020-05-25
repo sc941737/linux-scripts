@@ -3,13 +3,12 @@
 function push(){
 	git status
 	git add -A
-	git commit -m $1
+	git commit -m "$@"
 	git push
 }
 
 pushd .
 cd ~/Documents/linux-scripts/
-args=("$@")
-echo "okay well, let's see what the hell is this $@"
-push ${args[@]}
+args="$@"
+push "${args[@]}"
 popd
