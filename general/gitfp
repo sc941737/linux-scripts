@@ -10,5 +10,6 @@ function push(){
 pushd .
 cd ~/Documents/linux-scripts/
 args=("$@")
+echo "okay well, let's see what the hell is this $@"
 push ${args[@]}
 popd
