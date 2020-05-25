@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ifconfig
+
+ifconfig wlan0 down
+
+ifconfig wlan0 hw ether $(randmac)
+
+ifconfig wlan0 up
+
+ifconfig

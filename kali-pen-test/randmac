@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function randChar(){
+	num=$(randombtwn 0 22)
+	chars=('0' '1' '2' '3' '4' '5' '6' '7' '8' '9' 'a' 'b' 'c' 'd' 'e' 'f' 'A' 'B' 'C' 'D' 'E' 'F')
+	var=${chars[$(echo $num)]}
+	echo $var
+}
+
+mac=$(randChar)
+
+for i in {1..11}
+do
+	rand=$(randChar)
+	mac="$mac$rand"
+	rest=$(( $i%2 ))
+        if [ $rest -ne 0 ] && [ $i -ne 9 ]
+        then
+                colon=":"
+                mac="$mac$colon"
+        fi
+done
+
+echo $mac
+

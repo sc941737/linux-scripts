@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Killing process:"
+ps -e | grep $1
+
+kill $(ps -e | grep $1 | cut -d '?' -f 1)
+echo "Process killed."
+
+exit

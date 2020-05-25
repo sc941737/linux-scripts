@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z $1 ] || [ -z $2 ]
+then
+	echo "ERROR: Two variables are needed!"
+else
+	echo $(($1 + RANDOM % $2))
+fi

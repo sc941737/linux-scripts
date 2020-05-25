@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then 
+	echo "ERROR: Variable cannot be null!"
+	exit
+else
+	filepath=/usr/local/bin/
+	echo "#!/bin/bash" > ~/$1
+	file=~/$1
+	sudo chmod +x $file
+	sudo mv $file $filepath
+	sudo nano /usr/local/bin/$1
+fi
