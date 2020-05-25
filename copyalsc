@@ -6,10 +6,12 @@ sudo cp -r scripts/. /usr/local/bin/
 echo "Would you like to copy bash configuration and aliases as well? (y/n)"
 while read answer
 do
-        if [ $answer -eq "y" ]
+        if [ $answer == "y" ]
         then
                 sudo cp .bashrc .bash_aliases ~/
-        elif [ $answer -eq "n" ]
+		echo "Done."
+		break
+        elif [ $answer == "n" ]
         then
                 echo "Skipping."
                 break
@@ -23,10 +25,12 @@ done
 echo "Would you like to copy Kali scripts as well? (y/n)"
 while read answer
 do
-	if [ $answer -eq "y" ]
+	if [ $answer == "y" ]
 	then
 		sudo cp -r kali-pen-test/. /usr/local/bin/
-	elif [ $answer -eq "n" ]
+		echo "Done."
+		break
+	elif [ $answer == "n" ]
 	then
 		echo "Finished."
 		break
@@ -35,7 +39,5 @@ do
 		continue
 	fi
 done
-
-
 
 exit
