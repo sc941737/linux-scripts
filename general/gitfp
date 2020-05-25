@@ -9,5 +9,6 @@ function push(){
 
 pushd .
 cd ~/Documents/linux-scripts/
-push $(echo "$@")
+args=("$@")
+push ${args[@]}
 popd
