@@ -1,16 +1,21 @@
 #!/bin/bash
 
 ifconfig
-ifconfig wlan0 down
+sudo ifconfig wlan0 down
 
 if [ -z $1 ];
 then
-	ifconfig wlan0 hw ether $(randmac)
+	mac=$(randmac)
 else
-	ifconfig wlan0 hw ether $1
+	mac=$1
 fi
 
-ifconfig wlan0 up
+sudo ifconfig wlan0 hw ether $mac
+
+
+echo "Changing MAC address to $mac."
+
+sudo ifconfig wlan0 up
 ifconfig
 
 

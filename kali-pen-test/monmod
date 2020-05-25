@@ -1,13 +1,18 @@
 #!/bin/bash
 
-ifconfig wlan0 down
+echo "Entering monitor mode..."
 
-airmon-ng check kill
+sudo ifconfig wlan0 down
 
-iwconfig wlan0 mode monitor
+echo "Killing network processes:"
+sudo airmon-ng check kill
 
-ifconfig wlan0 up
+sudo iwconfig wlan0 mode monitor
+
+sudo ifconfig wlan0 up
 
 iwconfig
+
+echo "Complete."
 
 exit
