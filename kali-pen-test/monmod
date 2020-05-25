@@ -1,18 +1,27 @@
 #!/bin/bash
 
-echo "Entering monitor mode..."
+function complete(){
+	sudo ifconfig wlan0 up
+	iwconfig
+        echo "Complete."
+}
 
-sudo ifconfig wlan0 down
+if [ -z $1 ]
+then
+	echo "Entering monitor mode..."
+	sudo ifconfig wlan0 down
+	sudo airmon-ng check kill
+	sudo iwconfig wlan0 mode monitor
+	complete
 
-echo "Killing network processes:"
-sudo airmon-ng check kill
-
-sudo iwconfig wlan0 mode monitor
-
-sudo ifconfig wlan0 up
-
-iwconfig
-
-echo "Complete."
+elif [ $1 == "-r" ]
+then
+	echo "Reverting back to managed mode..."
+	sudo ifconfig wlan0 down
+	sudo iwconfig wlan0 mode managed
+	complete
+else
+	echo "Error: Invalid command: $1."
+fi
 
 exit
