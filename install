@@ -2,7 +2,7 @@
 
 function cpgeneral(){
 	echo "Copying all general scripts."
-	sudo cp -r scripts/. /usr/local/bin/
+	sudo cp -r general/. /usr/local/bin/
 	echo "Done."
 }
 
