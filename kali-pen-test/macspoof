@@ -10,11 +10,8 @@ else
 	mac=$1
 fi
 
-sudo ifconfig wlan0 hw ether $mac
-
-
 echo "Changing MAC address to $mac."
-
+sudo ifconfig wlan0 hw ether $mac
 sudo ifconfig wlan0 up
 ifconfig
 

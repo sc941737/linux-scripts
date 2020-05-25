@@ -1,25 +1,25 @@
 #!/bin/bash
 
-function randChar(){
-	num=$(randombtwn 0 16)
-	chars=('0' '1' '2' '3' '4' '5' '6' '7' '8' '9' 'a' 'b' 'c' 'd' 'e' 'f')
-	var=${chars[$(echo $num)]}
-	echo $var
+function randHex(){
+	num=$(randombtwn 0 255)
+	num=$(echo "obase=16; ibase=10; $num" | bc)
+	regex="^(0|1|2|3|4|5|6|7|8|9|A|B|C|D|E|F)$"
+	if [[ $num =~ $regex ]]
+	then
+		num="0$num"
+	fi
+	echo $num
 }
 
-mac=$(randChar)
+mac="$(randHex):"
 
-for i in {1..11}
+for i in {1..4}
 do
-	rand=$(randChar)
-	mac="$mac$rand"
-	rest=$(( $i%2 ))
-        if [ $rest -ne 0 ] && [ $i -ne 11 ]
-        then
-                colon=":"
-                mac="$mac$colon"
-        fi
+	var="$(randHex):"
+        mac="$mac$var"
 done
+
+mac="$mac$(randHex)"
 
 echo $mac
 
