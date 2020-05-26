@@ -17,7 +17,7 @@ then
 	then
 		airodump-ng wlan0
 	else
-		airodump-ng --bssid $1 --channel $2 --write spoofile wlan0
+		airodump-ng --bssid $1 --channel $2 --write ./spoofiles/spoofile wlan0
 	fi
 else
 	echo "Operation failed. Wait a few minutes and try again."

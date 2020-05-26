@@ -12,11 +12,20 @@ else
 	mac=$1
 fi
 
-echo "Current MAC address: $(macof wlan0)."
+oldMac=$(macof wlan0)
+
+echo "Current MAC address: $oldMac"
 sudo ifconfig wlan0 down
-echo "Changing MAC address to $mac."
+echo "Changing MAC address to $mac"
 sudo ifconfig wlan0 hw ether $mac
 sudo ifconfig wlan0 up
-ifconfig
+status=$(ifconfig | grep -c $oldMac)
+
+if [[ status -eq 0 ]]
+then
+	echo "Change succesful!"
+else
+	echo "Operation failed. Wait a few minutes and try again."
+fi
 
 
