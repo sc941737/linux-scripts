@@ -54,3 +54,14 @@ Returns the MAC address of a given interface.
 ```
 macof wlan0
 ```
+
+**observe**:
+This is the packet sniffing command with automated entry steps. You can observe all nearby networks running the command with no arguments. If you want to also change your MAC address in the process, pass "-s" as the argument.
+```
+observe
+observe -s
+```
+To observe a single network by passing the BSSID and the channel of the network as arguments, like so:
+```
+observe 00:11:22:33:44:55 1
+```

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+status=1
+
+if [[ $1 = "-s" ]]
+then
+	monmod -r
+	spoofOut=$(macspoof)
+	status=$(echo $spoofOut | grep -c "Change succesful!")
+	echo "$spoofOut"
+fi
+
+if [ $status != 0 ]
+then
+	monmod
+	if [ -z $1 ] || [ $1 = "-s" ]
+	then
+		airodump-ng wlan0
+	else
+		airodump-ng --bssid $1 --channel $2 --write spoofile wlan0
+	fi
+else
+	echo "Operation failed. Wait a few minutes and try again."
+fi
