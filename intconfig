@@ -1,0 +1,14 @@
+#!/bin/bash
+
+path="./kali-pen-test"
+files=( "$path/macspoof"  "$path/monmod" )
+
+echo "Modifying scripts..."
+
+for i in "${files[@]}"
+do
+	sed -i "s/wlan0/$1/g" $i
+	echo $i
+done
+
+echo "Complete."

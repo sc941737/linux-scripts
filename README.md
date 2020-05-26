@@ -40,8 +40,17 @@ An alternative for *killall* command.
 # Kali Linux Penetration Testing
 
 **macspoof**: 
-Changes user's MAC address to a randomly generated one.
-(Note: Script refers to wlan0 network. Use *ifconfig* command to make sure your network is also called wlan0 or else change the script adequatelly.)
+Changes user's MAC address to the one given as argument. For example:
+```
+macspoof 00:11:22:33:44:55
+```
+If no argument is given, a random MAC address is generated instead.
 
 **monmod**:
 Switches network to monitor mode or back from monitor to managed. (Note: This will kill all network processes.)
+
+**macof**:
+Returns the MAC address of a given interface.
+```
+macof wlan0
+```

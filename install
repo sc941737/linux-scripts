@@ -1,21 +1,54 @@
 #!/bin/bash
 
+general="general scripts"
+config="bash configuration and aliases"
+kali="Kali scripts"
+error="Please enter either 'n' for 'no' or 'y' for 'yes'."
+
+function copymsg(){
+	echo "Copying all $1."
+}
+
+function donemsg(){
+	echo "Done"
+}
+
 function cpgeneral(){
-	echo "Copying all general scripts."
+	copymsg "$general"
 	sudo cp -r general/. /usr/local/bin/
-	echo "Done."
+	donemsg
 }
 
 function cpconfig(){
-	echo "Copying all bash configuration and aliases."
+	copymsg "$config"
 	sudo cp .bashrc .bash_aliases ~/
-        echo "Done."
+        donemsg
 }
 
 function cpkali(){
-	echo "Copying all kali scripts."
+	echo "$kali are configured to use interface called 'wlan0' by default. Would you like to change the name of the interface? (y/n)"
+	while read answer
+        do
+                if [ $answer == "y" ]
+                then
+                        echo "Enter the new interface name:"
+			while read ans
+			do
+				./intconfig $ans
+				break
+			done
+                        break
+                elif [ $answer == "n" ]
+                then
+                        break
+                else
+                        echo $error
+                        continue
+                fi
+        done
+	copymsg "$kali"
 	sudo cp -r kali-pen-test/. /usr/local/bin/
-        echo "Done."
+        donemsg
 }
 
 function run(){
@@ -31,14 +64,14 @@ function run(){
 	                echo "Skipping."
                 	break
         	else
-	                echo "Please enter either 'n' for 'no' or 'y' for 'yes'."
+	                echo $error
                 	continue
         	fi
 	done
 }
 
-run "bash configuration and aliases" cpconfig
-run "general scripts" cpgeneral
-run "Kali scripts" cpkali
+run "$config" cpconfig
+run "$general" cpgeneral
+run "$kali" cpkali
 
 exit
