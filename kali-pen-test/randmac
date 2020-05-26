@@ -1,25 +1,37 @@
 #!/bin/bash
 
+afn=true # Need to assign the first number?
+
 function randHex(){
-	num=$(randombtwn 0 255)
-	num=$(echo "obase=16; ibase=10; $num" | bc)
-	regex="^(0|1|2|3|4|5|6|7|8|9|A|B|C|D|E|F)$"
-	if [[ $num =~ $regex ]]
+	num=$(randin 0 255) # Generate a random decimal number between 0 and 255 (maximum 2-digit range in hexadecimal).
+	if $afn;
+	then
+		rest=$(( num%2 ))
+		until [ $rest -eq 0 ] # Keep reassigning until the number is even.
+		do
+			num=$(randin 0 255)
+			rest=$(( num%2 ))
+		done
+		afn=false
+	fi
+	num=$(echo "obase=16; ibase=10; $num" | bc) # Convert to hexadecimal.
+	regex="^(0|1|2|3|4|5|6|7|8|9|A|B|C|D|E|F)$" #TODO: change if to ${#num}
+	if [[ $num =~ $regex ]] # Prefix with a 0 if the number is a single digit.
 	then
 		num="0$num"
 	fi
-	echo $num
+	echo $num # Return the number.
 }
 
-mac="$(randHex):"
+mac="$(randHex):" # Generate the first number and add a colon.
 
-for i in {1..4}
+for i in {1..4} # Generate following four numbers and add a colon.
 do
 	var="$(randHex):"
         mac="$mac$var"
 done
 
-mac="$mac$(randHex)"
+mac="$mac$(randHex)" # Generate the last (sixth) number.
 
-echo $mac
+echo $mac # Return generated MAC address.
 

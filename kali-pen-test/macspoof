@@ -1,7 +1,9 @@
 #!/bin/bash
 
-ifconfig
-sudo ifconfig wlan0 down
+# The script will inevitably fail sometimes. You will then see a "SIOCSIFHWADDR: Operation not permitted" error.
+# This can be for two reasons:
+# 1) The randomly generated MAC address is invalid. Just keep running the script until you get one that works.
+# 2) You have changed your MAC address in the last few minutes. Wait for a moment and try again.
 
 if [ -z $1 ];
 then
@@ -10,6 +12,8 @@ else
 	mac=$1
 fi
 
+echo "Current MAC address: $(macof wlan0)."
+sudo ifconfig wlan0 down
 echo "Changing MAC address to $mac."
 sudo ifconfig wlan0 hw ether $mac
 sudo ifconfig wlan0 up

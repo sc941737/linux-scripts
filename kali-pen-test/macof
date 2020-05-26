@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Find the line where is the beginning of the description of given interface.
+lineNum=$(ifconfig | grep -n $1 | cut -d ':' -f 1)
+
+# Get the total number of lines.
+lineCount=$(ifconfig | wc -l)
+
+# Isolate the line with the MAC address.
+line=$(ifconfig | tail -n $(( $lineCount-$lineNum )) | grep ether)
+
+# Isolate the MAC address.
+mac=$(echo $line | cut -d ' ' -f 2)
+
+echo $mac
