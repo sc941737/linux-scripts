@@ -74,4 +74,6 @@ run "$config" cpconfig
 run "$general" cpgeneral
 run "$kali" cpkali
 
+echo "All done."
+
 exit
