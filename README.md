@@ -36,6 +36,9 @@ newlos fileName
 **murder**: 
 An alternative for *killall* command.
 
+**exfat**:
+Formats chosen interface to exFAT file system.
+
 
 # Kali Linux Penetration Testing
 
