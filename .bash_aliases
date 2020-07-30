@@ -4,4 +4,5 @@ alias inst='sudo apt-get install'
 alias snano='sudo nano'
 alias ..='cd ..'
 alias findcmd='dpkg -l | grep'
+alias search='apt-cache search'
 
