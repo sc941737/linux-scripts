@@ -7,8 +7,5 @@ function push(){
 	git push
 }
 
-pushd .
-cd ~/Documents/linux-scripts/
 args="$@"
 push "${args[@]}"
-popd

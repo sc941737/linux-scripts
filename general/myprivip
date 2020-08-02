@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Isolate the line with the IP address.
+line=$(ifconfig | grep 'inet 192')
+
+# Isolate the IP address.
+ip=$(echo $line | cut -d ' ' -f 2)
+
+echo $ip
+
+exit

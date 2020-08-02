@@ -25,8 +25,23 @@ Changes the directory to /usr/local/bin/ and as such helps when one wants to qui
 **inst** ("**inst**all"): 
 Short for *sudo apt-get install*.
 
+**snano**:
+Short for *sudo nano*. Useful for modifying executable files.
+
+**search**:
+Short for *apt-cache search*. Searches for a program in the apt package.
+
+**findcmd** ("find **c**om**m**an**d**"):
+Searches for a command.
+
+**..**:
+Short for *cd ..*.
+
 
 # Scripts function
+
+**sys-check**:
+Displays the current memory, disk usage and uptime.
 
 **newlos** ("**new** **lo**cal **s**cript"): 
 Creates a new script file and opens nano editor. Thus made scripts are automatically made executable. Command requires one argument for a name of the script file. Example:
@@ -37,7 +52,17 @@ newlos fileName
 An alternative for *killall* command.
 
 **exfat**:
-Formats chosen interface to exFAT file system.
+Formats chosen external storage volume to exFAT file system.
+
+**randin** ("**rand**om **in** range):
+Generates a random number in the range specified by two parameters. For example:
+```
+randin 0 100
+```
+Note: The script utilises the shell RANDOM variable, therefore the top number has the limit of 32767.
+
+**myprivip** ("**my** **priv**ate **ip**"):
+Displays the private IP of the device.
 
 
 # Kali Linux Penetration Testing
@@ -59,7 +84,7 @@ macof wlan0
 ```
 
 **observe**:
-This is the packet sniffing command with automated entry steps. You can observe all nearby networks running the command with no arguments. If you want to also change your MAC address in the process, pass "-s" as the argument.
+This is the packet sniffing command with automated entry steps. You can observe all nearby networks running the command with no arguments. If you want to also spoof your MAC address in the process, pass "-s" as the argument.
 ```
 observe
 observe -s

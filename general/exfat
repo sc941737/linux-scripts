@@ -2,3 +2,5 @@
 
 sudo umount /dev/$1
 sudo mkfs.exfat /dev/$1
+
+exit

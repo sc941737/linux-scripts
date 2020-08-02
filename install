@@ -1,8 +1,9 @@
 #!/bin/bash
 
 general="general scripts"
-config="bash configuration and aliases"
+config="bash configurations and aliases"
 kali="Kali scripts"
+dev="development scripts"
 error="Please enter either 'n' for 'no' or 'y' for 'yes'."
 
 function copymsg(){
@@ -13,16 +14,18 @@ function donemsg(){
 	echo "Done"
 }
 
-function cpgeneral(){
-	copymsg "$general"
-	sudo cp -r general/. /usr/local/bin/
+function cpdir(){
+	copymsg "$1"
+	sudo cp -r $2/. /usr/local/bin/
 	donemsg
 }
 
+function cpgeneral(){
+	cpdir "$general" general
+}
+
 function cpconfig(){
-	copymsg "$config"
-	sudo cp .bashrc .bash_aliases ~/
-        donemsg
+	cpdir "$config" config
 }
 
 function cpkali(){
@@ -32,9 +35,9 @@ function cpkali(){
                 if [ $answer == "y" ]
                 then
                         echo "Enter the new interface name:"
-			while read ans
+			while read interface
 			do
-				./intconfig $ans
+				kali-pen-test/intconfig $interface
 				break
 			done
                         break
@@ -69,6 +72,10 @@ function run(){
         	fi
 	done
 }
+
+if [ $1 == '--dev' ]; then
+	cpdir "$dev" dev
+fi
 
 run "$config" cpconfig
 run "$general" cpgeneral
