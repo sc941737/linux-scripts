@@ -2,9 +2,19 @@
 
 error="Please enter either 'n' for 'no' or 'y' for 'yes'."
 args="$@"
+dirPath=~/Documents/linux-scripts/
+path=$dirPath
 
-function getPath(){
-        find ~/Documents/linux-scripts/ -name $1
+function setDirPath(){
+	echo "Searching for directory: 'linux-scripts'.";
+	dirPath=$(find ~/ -name linux-scripts)
+	echo "Done."
+}
+
+function setFilePath(){
+        echo "Searching for file path: '$1'."
+	path=$(find $dirPath -name $1)
+	echo "Done."
 }
 
 function addNewScript(){
@@ -25,7 +35,7 @@ function addNewScript(){
 				*) echo "ERROR: Please choose a directory." ;;
 				esac
 			done
-			cp /usr/local/bin/$1 ~/Documents/linux-scripts/$directory
+			cp /usr/local/bin/$1 $dirPath/$directory
 			break
 		elif [ $answer == "n" ]
 		then
@@ -41,7 +51,7 @@ function copyFiles(){
 	IFS=' ' read -ra files <<< "$@"
         for i in "${files[@]}"
         do
-                path=$(getPath $i)
+                setFilePath $i
                 if [ -z $path ]
 		then
                         addNewScript $i
@@ -51,6 +61,7 @@ function copyFiles(){
         done
 }
 
+setDirPath
 
 if [ -z $1 ]
 then

@@ -25,7 +25,9 @@ function cpgeneral(){
 }
 
 function cpconfig(){
-	cpdir "$config" config
+	copymsg "$config" 
+	sudo cp -r config/. ~/
+	donemsg
 }
 
 function cpkali(){
@@ -49,9 +51,7 @@ function cpkali(){
                         continue
                 fi
         done
-	copymsg "$kali"
-	sudo cp -r kali-pen-test/. /usr/local/bin/
-        donemsg
+	cpdir "$kali" kali-pen-test
 }
 
 function run(){
@@ -73,7 +73,8 @@ function run(){
 	done
 }
 
-if [ $1 == '--dev' ]; then
+if [ ! -z $1 ] && [ $1 == "--dev" ]
+then
 	cpdir "$dev" dev
 fi
 
