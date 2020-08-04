@@ -84,7 +84,7 @@ macof wlan0
 ```
 
 **observe**:
-This is the packet sniffing command with automated entry steps. You can observe all nearby networks running the command with no arguments. If you want to also spoof your MAC address in the process, pass "-s" as the argument.
+This is a packet sniffing command with automated entry steps. You can observe all nearby networks running the command with no arguments. If you want to also spoof your MAC address in the process, pass "-s" as the argument.
 ```
 observe
 observe -s
