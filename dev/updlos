@@ -66,6 +66,7 @@ setDirPath
 if [ -z $1 ]
 then
 	echo "ERROR: You need to pass some files as arguments."
+	false
 elif [ $1 == '--all' ] || [ $1 == '-a' ]
 then
 	array=( $( ls usr/local/bin/ ) )

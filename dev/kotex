@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Runs an equivalent .jar executable. If it doesn't exist, it will be created.
+
+if [ -z $1 ]; then
+	newFile=$(sed 's/.kt/.jar/g' <<< $1)
+	if [ -f $newFile ]; then
+		kotcom $1
+	fi
+	java -jar $newFile
+else
+	echo "File $1 not found."
+	false
+fi

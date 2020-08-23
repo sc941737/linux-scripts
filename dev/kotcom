@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# This app requires Kotlin and Java. You can install them with the following:
+#	curl -s https://get.sdkman.io | bash
+#	source "~/.sdkman/bin/sdkman-init.sh"
+#	sdk install kotlin
+#	sdk install java
+
+if [ -z $1 ]; then
+	echo -e "The argument cannot be null!"
+	false
+elif [ -f $1 ]; then
+	newFile=$(sed 's/.kt/.jar/g' <<< $1)
+	kotlinc $1 -include-runtime -d "$newFile"
+	echo
+else
+	echo  "File '$1' not found."
+	false
+fi

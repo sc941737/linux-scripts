@@ -10,5 +10,5 @@ else
 	file=~/$1
 	sudo chmod +x $file
 	sudo mv $file $filepath
-	sudo nano /usr/local/bin/$1
+	sudo nano -l /usr/local/bin/$1
 fi
