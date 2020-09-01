@@ -2,12 +2,12 @@
 
 error="Please enter either 'n' for 'no' or 'y' for 'yes'."
 args="$@"
-dirPath=~/Documents/linux-scripts/
+dirPath=$HOME/Documents/linux-scripts/
 path=$dirPath
 
 function setDirPath(){
 	echo "Searching for directory: 'linux-scripts'.";
-	dirPath=$(find ~/ -name linux-scripts)
+	dirPath=$(find $HOME/ -name linux-scripts)
 	echo "Done."
 }
 
@@ -69,7 +69,7 @@ then
 	false
 elif [ $1 == '--all' ] || [ $1 == '-a' ]
 then
-	array=( $( ls usr/local/bin/ ) )
+	array=( $( ls /usr/local/bin/ ) )
 	copyFiles "${array[@]}"
 else
 	copyFiles "${args[@]}"

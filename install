@@ -1,10 +1,19 @@
 #!/bin/bash
 
+#TODO fix the cp error for all 3 configurations:
+# cp: cannot stat 'general/.': No such file or directory
+# SOLUTION: find path
+# TODO extract the yes/no loop as a function/script
+
 general="general scripts"
 config="bash configurations and aliases"
 kali="Kali scripts"
 dev="development scripts"
-error="Please enter either 'n' for 'no' or 'y' for 'yes'."
+dirPath=$(find $HOME/ -name linux-scripts)
+
+function prompt(){
+	yes-no-loop "$1"
+}
 
 function copymsg(){
 	echo "Copying all $1."
@@ -16,7 +25,7 @@ function donemsg(){
 
 function cpdir(){
 	copymsg "$1"
-	sudo cp -r $2/. /usr/local/bin/
+	sudo cp -r $dirPath/$2/. /usr/local/bin/
 	donemsg
 }
 
@@ -26,61 +35,35 @@ function cpgeneral(){
 
 function cpconfig(){
 	copymsg "$config" 
-	sudo cp -r config/. ~/
+	sudo cp -r $dirPath/config/. $HOME/
 	donemsg
 }
 
+function changeInterface(){
+	echo "Enter a new interface name:" #TODO restrict input to a single word
+	read interface && $dirPath/kali-pen-test/intconfig $interface
+}
+
 function cpkali(){
-	echo "$kali are configured to use interface called 'wlan0' by default. Would you like to change the name of the interface? (y/n)"
-	while read answer
-        do
-                if [ $answer == "y" ]
-                then
-                        echo "Enter the new interface name:"
-			while read interface
-			do
-				kali-pen-test/intconfig $interface
-				break
-			done
-                        break
-                elif [ $answer == "n" ]
-                then
-                        break
-                else
-                        echo $error
-                        continue
-                fi
-        done
+	prompt "$kali are configured to use interface called 'wlan0' by default. Would you like to change the name of the interface? (y/n)" && changeInterface || echo "Default interface left unchanged."
 	cpdir "$kali" kali-pen-test
 }
 
 function run(){
-	echo "Would you like to install $1? (y/n)"
-	while read answer
-	do
-	        if [ $answer == "y" ]
-	        then
-	                $2
-	                break
-	        elif [ $answer == "n" ]
-	        then
-	                echo "Skipping."
-                	break
-        	else
-	                echo $error
-                	continue
-        	fi
-	done
+	prompt "Would you like to install $1? (y/n)" && $2 || echo "Skipping."
 }
 
 if [ ! -z $1 ] && [ $1 == "--dev" ]
 then
 	cpdir "$dev" dev
+	cpconfig
+	cpgeneral
+	cpkali
+else
+	run "$config" cpconfig
+	run "$general" cpgeneral
+	run "$kali" cpkali
 fi
-
-run "$config" cpconfig
-run "$general" cpgeneral
-run "$kali" cpkali
 
 echo "All done."
 

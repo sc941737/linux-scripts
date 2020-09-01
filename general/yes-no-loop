@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Asks the question passed as an argument and loops until gets "y/yes" or "n/no" as an answer.
+
+error="Please enter either 'n' for 'no' or 'y' for 'yes'."
+
+echo $1
+
+while read answer
+do
+	answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
+	if [ $answer == "y" ] || [ $answer == "yes" ]
+	then
+		true
+		exit
+	elif [ $answer == "n" ] || [ $answer == "no" ]
+	then
+		false
+		exit
+	else
+		echo $error
+		continue
+	fi
+done

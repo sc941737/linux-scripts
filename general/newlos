@@ -6,8 +6,8 @@ then
 	exit
 else
 	filepath=/usr/local/bin/
-	echo "#!/bin/bash" > ~/$1
-	file=~/$1
+	echo "#!/bin/bash" > $HOME/$1
+	file=$HOME/$1
 	sudo chmod +x $file
 	sudo mv $file $filepath
 	sudo nano -l /usr/local/bin/$1

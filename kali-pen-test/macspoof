@@ -5,6 +5,8 @@
 # 1) The randomly generated MAC address is invalid. Just keep running the script until you get one that works.
 # 2) You have changed your MAC address in the last few minutes. Wait for a moment and try again.
 
+#TODO Try changing the mac in a loop with sleep for 30sec, until it passes. Use the && syntax instead of an if statement.
+
 if [ -z $1 ];
 then
 	mac=$(randmac)
