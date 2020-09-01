@@ -1,10 +1,5 @@
 #!/bin/bash
 
-#TODO fix the cp error for all 3 configurations:
-# cp: cannot stat 'general/.': No such file or directory
-# SOLUTION: find path
-# TODO extract the yes/no loop as a function/script
-
 general="general scripts"
 config="bash configurations and aliases"
 kali="Kali scripts"

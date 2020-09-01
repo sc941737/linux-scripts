@@ -1,9 +1,12 @@
 #!/bin/bash
 
-error="Please enter either 'n' for 'no' or 'y' for 'yes'."
 args="$@"
 dirPath=$HOME/Documents/linux-scripts/
 path=$dirPath
+
+function prompt(){
+	yes-no-loop $1
+}
 
 function setDirPath(){
 	echo "Searching for directory: 'linux-scripts'.";
@@ -18,33 +21,19 @@ function setFilePath(){
 }
 
 function addNewScript(){
-	echo "Warning: The file '$1' is not part of the project. Do you want to copy it anyway? (y/n)"
-	while read answer
-	do
-		if [ $answer == "y" ]
-		then
-			echo "Into which directory do you want to copy the file?"
-			directory=new/
-			select choice in config dev general kali-pen-test
-			do
-				case $choice in
-				config) directory=config/; break ;;
-				dev) directory=dev/; break ;;
-				general) directory=general/; break ;;
-				kali-pen-test) directory=kali-pen-test/; break ;;
-				*) echo "ERROR: Please choose a directory." ;;
-				esac
-			done
-			cp /usr/local/bin/$1 $dirPath/$directory
-			break
-		elif [ $answer == "n" ]
-		then
-			break
-		else
-			echo $error
-			continue
-		fi
-	done
+		echo "Into which directory do you want to copy the file?"
+		directory=new/
+		select choice in config dev general kali-pen-test
+		do
+			case $choice in
+			config) directory=config/; break ;;
+			dev) directory=dev/; break ;;
+			general) directory=general/; break ;;
+			kali-pen-test) directory=kali-pen-test/; break ;;
+			*) echo "ERROR: Please choose a directory." ;;
+			esac
+		done
+		cp /usr/local/bin/$1 $dirPath/$directory
 }
 
 function copyFiles(){
@@ -54,7 +43,8 @@ function copyFiles(){
                 setFilePath $i
                 if [ -z $path ]
 		then
-                        addNewScript $i
+			promptQuestion="Warning: The file '$1' is not part of the project. Do you want to copy it anyway? (y/n)"
+                        prompt $promptQuestion && addNewScript $i
                 else
                         cp /usr/local/bin/$i $path
                 fi
