@@ -11,12 +11,10 @@ do
 	answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 	if [ $answer == "y" ] || [ $answer == "yes" ]
 	then
-		true
-		exit
+		exit 0
 	elif [ $answer == "n" ] || [ $answer == "no" ]
 	then
-		false
-		exit
+		exit 1
 	else
 		echo $error
 		continue

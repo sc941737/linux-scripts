@@ -19,9 +19,6 @@ This will automatically copy chosen scripts to your /usr/local/bin/ directory, s
 **newal** ("**new** **al**ias"): 
 Opens .bash_aliases file.
 
-**clos** ("**c**hange to **lo**cal **s**cripts directory"): 
-Changes the directory to /usr/local/bin/ and as such helps when one wants to quickly edit a script.
-
 **inst** ("**inst**all"): 
 Short for *sudo apt-get install*.
 
@@ -31,11 +28,20 @@ Short for *sudo nano*. Useful for modifying executable files.
 **search**:
 Short for *apt-cache search*. Searches for a program in the apt package.
 
-**findcmd** ("find **c**om**m**an**d**"):
-Searches for a command.
+**clos** ("**c**hange to **lo**cal **s**cripts directory"): 
+Changes the directory to /usr/local/bin/ and as such helps when one wants to quickly edit a script.
 
 **..**:
 Short for *cd ..*.
+
+**opendir**
+(For Nautilus users!) Opens a directory in the file manager's browser.
+
+**findcmd** ("find **c**om**m**an**d**"):
+Searches for a command.
+
+**stfu/unstfu**
+(For GNOME users!) Turns notifications off/on.
 
 
 # Scripts function

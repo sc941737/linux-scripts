@@ -9,31 +9,31 @@ function prompt(){
 }
 
 function setDirPath(){
-	echo "Searching for directory: 'linux-scripts'.";
+	echo "Searching for directory: 'linux-scripts'...";
 	dirPath=$(find $HOME/ -name linux-scripts)
 	echo "Done."
 }
 
 function setFilePath(){
-        echo "Searching for file path: '$1'."
+        echo "Searching for file path: '$1'..."
 	path=$(find $dirPath -name $1)
 	echo "Done."
 }
 
 function addNewScript(){
-		echo "Into which directory do you want to copy the file?"
-		directory=new/
-		select choice in config dev general kali-pen-test
-		do
-			case $choice in
-			config) directory=config/; break ;;
-			dev) directory=dev/; break ;;
-			general) directory=general/; break ;;
-			kali-pen-test) directory=kali-pen-test/; break ;;
-			*) echo "ERROR: Please choose a directory." ;;
-			esac
-		done
-		cp /usr/local/bin/$1 $dirPath/$directory
+	echo "Into which directory do you want to copy the file?"
+	directory=new/
+	select choice in config dev general kali-pen-test
+	do
+		case $choice in
+		config) directory=config/; break ;;
+		dev) directory=dev/; break ;;
+		general) directory=general/; break ;;
+		kali-pen-test) directory=kali-pen-test/; break ;;
+		*) echo "ERROR: Please choose a directory." ;;
+		esac
+	done
+	cp /usr/local/bin/$1 $dirPath/$directory
 }
 
 function copyFiles(){

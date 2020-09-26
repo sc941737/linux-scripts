@@ -7,7 +7,7 @@ dev="development scripts"
 dirPath=$(find $HOME/ -name linux-scripts)
 
 function prompt(){
-	yes-no-loop "$1"
+	$dirPath/general/yes-no-loop "$1"
 }
 
 function copymsg(){

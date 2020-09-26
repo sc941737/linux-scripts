@@ -3,7 +3,7 @@
 if [ -z $1 ]
 then 
 	echo "ERROR: Variable cannot be null!"
-	exit
+	exit 1
 else
 	filepath=/usr/local/bin/
 	echo "#!/bin/bash" > $HOME/$1
