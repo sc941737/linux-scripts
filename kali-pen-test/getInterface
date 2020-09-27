@@ -1,0 +1,11 @@
+#!/bin/bash
+
+path=/etc/NetworkManager/system-connections/
+
+for file in $(ls $path)
+do
+	result=$(sudo grep --no-messages "interface-name" "$path$file") 
+	[ -z $result ] || IFS='=' read -ra words <<< "$result" 
+	[ -z $words ] && continue || echo "${words[1]}"
+	break	
+done

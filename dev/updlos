@@ -5,7 +5,7 @@ dirPath=$HOME/Documents/linux-scripts/
 path=$dirPath
 
 function prompt(){
-	yes-no-loop $1
+	yes-no-loop "$1"
 }
 
 function setDirPath(){
@@ -44,7 +44,7 @@ function copyFiles(){
                 if [ -z $path ]
 		then
 			promptQuestion="Warning: The file '$1' is not part of the project. Do you want to copy it anyway? (y/n)"
-                        prompt $promptQuestion && addNewScript $i
+                        prompt "$promptQuestion" && addNewScript $i
                 else
                         cp /usr/local/bin/$i $path
                 fi

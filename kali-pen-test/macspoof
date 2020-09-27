@@ -1,33 +1,37 @@
 #!/bin/bash
 
-# The script will inevitably fail sometimes. You will then see a "SIOCSIFHWADDR: Operation not permitted" error.
-# This can be for two reasons:
-# 1) The randomly generated MAC address is invalid. Just keep running the script until you get one that works.
-# 2) You have changed your MAC address in the last few minutes. Wait for a moment and try again.
+error="Operation failed. Next try in 1 minute." 
+errorInvalidMac="Invalid MAC address. The first number has to be even."
+success="MAC address spoofed succesfully!"
+interface=$(getInterface)
+[ -z $1 ] && mac=$(randmac) || mac=$1
 
-#TODO Try changing the mac in a loop with sleep for 30sec, until it passes. Use the && syntax instead of an if statement.
+function isValidMac(){ # Valid mad requires the first number to be even.
+	IFS=':' read -ra numbers <<< "$1"
+	firstNumber="${numbers[0]}"
+	decimalNum=$(echo "obase=10; ibase=16; $firstNumber" | bc)
+	rest=$(( decimalNum%2 ))
+	[ $rest -eq 0 ] && echo true || echo false
+}
 
-if [ -z $1 ];
+function tryChangeMac(){
+	echo "Changing MAC address to $mac"
+	while true
+	do
+		sudo ifconfig $interface hw ether $mac && break || (echo $error; sleep 60) 
+	done
+	notify-send "$success"
+}
+
+if [ -z $1 ] || $(isValidMac $mac)
 then
-	mac=$(randmac)
+	oldMac=$(macof $interface)
+	echo "Current MAC address: $oldMac"
+	sudo ifconfig $interface down
+	tryChangeMac
+	sudo ifconfig $interface up
+	exit 0
 else
-	mac=$1
+	echo $errorInvalidMac
+	exit 1
 fi
-
-oldMac=$(macof wlan0)
-
-echo "Current MAC address: $oldMac"
-sudo ifconfig wlan0 down
-echo "Changing MAC address to $mac"
-sudo ifconfig wlan0 hw ether $mac
-sudo ifconfig wlan0 up
-status=$(ifconfig | grep -c $oldMac)
-
-if [[ status -eq 0 ]]
-then
-	echo "Change succesful!"
-else
-	echo "Operation failed. Wait a few minutes and try again."
-fi
-
-

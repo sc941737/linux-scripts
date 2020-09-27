@@ -1,7 +1,9 @@
 #!/bin/bash
 
+interface=$(getInterface)
+
 function complete(){
-	sudo ifconfig wlan0 up
+	sudo ifconfig $interface up
 	iwconfig
         echo "Complete."
 }
@@ -9,19 +11,20 @@ function complete(){
 if [ -z $1 ]
 then
 	echo "Entering monitor mode..."
-	sudo ifconfig wlan0 down
+	sudo ifconfig $interface down
 	sudo airmon-ng check kill
-	sudo iwconfig wlan0 mode monitor
+	sudo iwconfig $interface mode monitor
 	complete
 
 elif [ $1 == "-r" ]
 then
 	echo "Reverting back to managed mode..."
-	sudo ifconfig wlan0 down
-	sudo iwconfig wlan0 mode managed
+	sudo ifconfig $interface down
+	sudo iwconfig $interface mode managed
 	complete
 else
 	echo "Error: Invalid command: $1."
+	exit 1
 fi
 
 exit
