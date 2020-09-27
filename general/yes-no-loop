@@ -9,10 +9,10 @@ echo $1
 while read answer
 do
 	answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
-	if [ $answer == "y" ] || [ $answer == "yes" ]
+	if [ $answer = "y" ] || [ $answer = "yes" ]
 	then
 		exit 0
-	elif [ $answer == "n" ] || [ $answer == "no" ]
+	elif [ $answer = "n" ] || [ $answer = "no" ]
 	then
 		exit 1
 	else

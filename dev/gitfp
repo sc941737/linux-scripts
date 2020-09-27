@@ -3,9 +3,8 @@
 function push(){
 	git status
 	git add -A
-	git commit -m "$@"
+	git commit -m "$1"
 	git push
 }
 
-args="$@"
-push "${args[@]}"
+push "$1"
