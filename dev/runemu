@@ -1,0 +1,7 @@
+#!/bin/bash
+[ -z $ANDROID_EMULATOR ] && printf "Please set ANDROID_EMULATOR variable to point to your emulator location. For example:\n\texport ANDROID_EMULATOR=~/Android/sdk/emulator/emulator\n" && exit 1
+set -m
+dns=$(cat /etc/resolv.conf | grep "nameserver" | grep "\." | awk '{split($0,a," "); print a[2]}')
+echo "Running emulator with DNS address: $dns"
+$ANDROID_EMULATOR -avd $1 -dns-server $dns -no-snapshot-load &>/dev/null &
+disown

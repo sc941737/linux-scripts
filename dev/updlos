@@ -43,7 +43,7 @@ function copyFiles(){
                 setFilePath $i
                 if [ -z $path ]
 		then
-			promptQuestion="Warning: The file '$1' is not part of the project. Do you want to copy it anyway? (y/n)"
+			promptQuestion="Warning: The file '$i' is not part of the project. Do you want to copy it anyway? (y/n)"
                         prompt "$promptQuestion" && addNewScript $i
                 else
                         cp /usr/local/bin/$i $path

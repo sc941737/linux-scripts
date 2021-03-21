@@ -1,0 +1,21 @@
+#!/bin/bash
+
+name=$1
+scriptdir=/usr/local/bin/
+path=$scriptdir$name
+
+[ -z $name ] && printf "ERROR: Please specify a name, e.g.:\n\tmkscript scriptname\n" && exit 1
+
+function defaultEditor(){
+	sudo nano -l $1
+}
+
+function runEditor(){
+	[ -z $EDITOR ] && defaultEditor $path || sudo $EDITOR $path
+}
+
+echo "#!/bin/bash" > $HOME/$name
+file=$HOME/$1
+sudo chmod +x $file
+sudo mv $file $scriptdir
+runEditor && echo "Script $name created in $scriptdir" && exit 0

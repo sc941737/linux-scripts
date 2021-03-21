@@ -1,0 +1,4 @@
+#!/bin/bash
+
+var="$1"
+sed "s/$var//g" $2 > tmp && mv tmp $2
