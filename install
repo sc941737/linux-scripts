@@ -6,8 +6,6 @@ kali="Kali scripts"
 dev="development scripts"
 dirPath=$(find $HOME/ -name linux-scripts)
 
-#TODO use pipes before donemsg
-#TODO source bashrc and aliases
 #TODO get interface from NetworkManager config
 
 function prompt(){
@@ -23,9 +21,7 @@ function donemsg(){
 }
 
 function cpdir(){
-	copymsg "$1"
-	sudo cp -r $dirPath/$2/. /usr/local/bin/
-	donemsg
+	copymsg "$1" && sudo cp -r $dirPath/$2/. /usr/local/bin/ && donemsg
 }
 
 function cpgeneral(){
@@ -33,9 +29,7 @@ function cpgeneral(){
 }
 
 function cpconfig(){
-	copymsg "$config" 
-	sudo cp -r $dirPath/config/. $HOME/
-	donemsg
+	copymsg "$config" && sudo cp -r $dirPath/config/. $HOME/ && donemsg
 }
 
 function cpkali(){
@@ -57,6 +51,9 @@ else
 	run "$general" cpgeneral
 	run "$kali" cpkali
 fi
+
+source $HOME/.bashrc
+source $HOME/.bash_aliases
 
 echo "All done."
 
