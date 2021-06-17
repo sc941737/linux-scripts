@@ -56,10 +56,14 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+git_branch() {
+    branch=$(git branch --show 2>/dev/null)
+    [[ -z $branch ]] && echo "" || echo "($branch) "
+}
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w \[\033[38;5;202m\]$(git_branch)\[\033[00m\]$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u:\w\ $(git_branch)$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -122,3 +126,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 source "$HOME/.cargo/env"
 
 export EDITOR=vim
+export LBIN=/usr/local/bin/
+export BIN=/usr/bin/
+alias mvvrchatpics="mv ~/.steam/debian-installation/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/My\ Pictures/VRChat/* ~/Pictures/vrchat/"

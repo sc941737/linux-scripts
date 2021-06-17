@@ -1,0 +1,6 @@
+#!/bin/bash
+
+branch="$2"
+filePath=$(du -ah . | grep -r "$1" | awk '{n=split($0,a," "); print a[n]}')
+set -i
+[ -z "$branch" ] && git diff $filePath || git diff $branch -- $filePath

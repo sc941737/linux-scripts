@@ -27,6 +27,7 @@ alias ms='mullvad status'
 alias stfu='dconf write /org/gnome/desktop/notifications/show-banners false'
 alias unstfu='dconf write /org/gnome/desktop/notifications/show-banners true'
 alias findcmd='dpkg -l | grep'
+alias agrep='grepr app/src/'
 
 # Git:
 alias gc='git commit'
