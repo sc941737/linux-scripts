@@ -3,4 +3,4 @@
 keyword="$1"
 path="."
 [ -z "$2" ] || path="$2"
-du -ah $path | grep -i "$keyword" --color
+du -ah $path 2>/dev/null | grep -i "$keyword" --color

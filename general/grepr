@@ -3,4 +3,4 @@
 keywords="$1"
 path="./"
 [ -z "$2" ] || path="$2"
-grep -ri "$keywords" $path* --color
+grep -ri "$keywords" $path* --color 2>/dev/null
