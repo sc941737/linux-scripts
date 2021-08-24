@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ -z $1 ]] && git commit && exit 0 # Commit with no comments, e.g. after resolving conflicts in a merge.
+[[ -z "$1" ]] && git commit && exit 0 # Commit with no comments, e.g. after resolving conflicts in a merge.
 [[ "$1" == "-"*  ]] && echo "The first argument has to be a commit message." && exit 1
 currentBranch=$(git branch --show-current) || exit 1 # Not a git repo, exiting...
 ticketCategory=$(echo "$currentBranch" | awk '{split($0,a,"-"); print a[1]}')
