@@ -127,7 +127,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "/home/d/.sdkman/bin/sdkman-init.sh" ]] && source "/home/d/.sdkman/bin/sdkman-init.sh"
 source "$HOME/.cargo/env"
 
+export REPOS=$HOME/repos/
 export EDITOR=vim
 export LBIN=/usr/local/bin/
 export BIN=/usr/bin/
-alias mvvrchatpics="mv ~/.steam/debian-installation/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/My\ Pictures/VRChat/* ~/Pictures/vrchat/"
+alias mvvrchatpics="mv ~/.steam/debian-installation/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/My\ Pictures/VRChat/* ~/Pictures/vrchat/ || mv ~/.steam/debian-installation/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat/* ~/Pictures/vrchat/"

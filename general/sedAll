@@ -1,0 +1,10 @@
+#!/bin/bash
+
+searchResults=$(du -ah | grep -ri "$1")
+
+for result in "$searchResults"; do
+	file=$(echo "$result" | awk '{split($0,a,":"); print a[1]}')
+	[ -f $file ] || continue
+	tmp=/tmp/sedAllTmp
+	sed "s/$1/$2/g" $file > $tmp && mv $tmp $file
+done
