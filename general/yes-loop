@@ -1,0 +1,11 @@
+#!/bin/bash
+
+script="$@"
+
+while true
+do
+	$script
+	yes-no-loop "Confirm changes have been made to proceed (y/yes), or repeat the action (n/no): " && break
+done
+
+exit 0
