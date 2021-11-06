@@ -18,22 +18,20 @@ alias ...='cd ../..'
 alias Documents='cd ~/Documents'
 alias Downloads='cd ~/Downloads'
 alias Desktop='cd ~/Desktop'
-alias repos='cd $REPOS'
 alias clos='cd /usr/local/bin/'
 
 # Shortcuts for specific app run configurations:
 alias atom='sudo atom --no-sandbox'
 alias opendir='nautilus --browser'
 alias ms='mullvad status'
-alias mullvad-disconnect='mullvad always-require-vpn set off && mullvad disconnect'
 alias mullvad-connect='mullvad connect && mullvad always-require-vpn set on'
+alias mullvad-disconnect='mullvad always-require-vpn set off && mullvad disconnect'
 
 # Utilities:
 alias stfu='dconf write /org/gnome/desktop/notifications/show-banners false'
 alias unstfu='dconf write /org/gnome/desktop/notifications/show-banners true'
 alias findcmd='dpkg -l | grep'
 alias myip='curl http://ipecho.net/plain; echo'
-alias greph='history | grep'
 
 # Git:
 alias gc='git commit'
@@ -44,7 +42,7 @@ alias grt='git reset'
 alias gdh='git diff HEAD'
 alias gdl='git diff HEAD~1'
 alias gds='git diff --compact-summary'
-alias gco='git checkout'
+alias gco='git-checkout-last'
 alias gs='git status'
 alias gp='git pull'
 alias gm='git merge'
@@ -62,4 +60,4 @@ alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%
 alias glm='git log master.. --oneline --no-merges'
 alias gcoo='git checkout --ours'
 alias gcot='git checkout --theirs'
-
+alias gcob='git-checkout-last -b'
