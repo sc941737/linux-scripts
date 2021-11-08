@@ -122,10 +122,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "/home/d/.sdkman/bin/sdkman-init.sh" ]] && source "/home/d/.sdkman/bin/sdkman-init.sh"
-source "$HOME/.cargo/env"
+
+# Rust
+rustenv=$HOME/.cargo/env
+[ -f $rustenv ] && source $rustenv
 
 export REPOS=$HOME/repos/
 export EDITOR=vim
