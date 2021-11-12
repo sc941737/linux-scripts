@@ -19,6 +19,7 @@ alias Documents='cd ~/Documents'
 alias Downloads='cd ~/Downloads'
 alias Desktop='cd ~/Desktop'
 alias clos='cd /usr/local/bin/'
+alias repos='cd ~/repos'
 
 # Shortcuts for specific app run configurations:
 alias atom='sudo atom --no-sandbox'
@@ -32,6 +33,8 @@ alias stfu='dconf write /org/gnome/desktop/notifications/show-banners false'
 alias unstfu='dconf write /org/gnome/desktop/notifications/show-banners true'
 alias findcmd='dpkg -l | grep'
 alias myip='curl http://ipecho.net/plain; echo'
+alias fixbt='sudo rmmod btusb && sudo modprobe btusb'
+alias fixau='sudo pulseaudio -k && sudo alsa force-reload'
 
 # Git:
 alias gc='git commit'
