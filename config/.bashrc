@@ -58,7 +58,8 @@ fi
 
 git_branch() {
     branch=$(git branch --show 2>/dev/null)
-    [[ -z $branch ]] && echo "" || echo "($branch) "
+    commit=$(git status 2>/dev/null | grep detached | awk '{print $NF}')
+    [[ -n $branch ]] && echo "($branch) " || ([[ -n $commit ]] && echo "($commit) ") || echo ""
 }
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w \[\033[38;5;202m\]$(git_branch)\[\033[00m\]$ '
