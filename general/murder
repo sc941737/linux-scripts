@@ -1,9 +1,10 @@
 #!/bin/bash
 
+process=$(ps -e | grep $1)
 echo "Killing process:"
-ps -e | grep $1
+echo "$process"
 
-kill $(ps -e | grep $1 | cut -d '?' -f 1)
+kill $(echo $process | awk '{ print $1 }')
 echo "Process killed."
 
 exit
