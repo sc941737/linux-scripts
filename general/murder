@@ -1,6 +1,8 @@
 #!/bin/bash
 
 process=$(ps -e | grep $1)
+[ -z $process ] && echo "Process matching '$1' not found." && exit 1
+
 echo "Killing process:"
 echo "$process"
 
