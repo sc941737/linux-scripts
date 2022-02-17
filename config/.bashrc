@@ -108,9 +108,12 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 gld(){
 	git log $1..$2 --oneline --no-merges
 }
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+
+aliases=$HOME/.bash_aliases
+[ -f $aliases ] && . $aliases
+
+localrc=$HOME/.bashrc_local
+[ -f $localrc ] && . $localrc
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -135,4 +138,4 @@ export REPOS=$HOME/repos/
 export EDITOR=vim
 export LBIN=/usr/local/bin/
 export BIN=/usr/bin/
-alias mvvrchatpics="mv ~/.steam/debian-installation/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/My\ Pictures/VRChat/* ~/Pictures/vrchat/ || mv ~/.steam/debian-installation/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat/* ~/Pictures/vrchat/"
+
