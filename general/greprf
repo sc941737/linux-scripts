@@ -1,0 +1,6 @@
+#!/bin/bash
+
+keywords="$1"
+path="./"
+[ -z "$2" ] || path="$2"
+grep -ri -l "$keywords" $path* 2>/dev/null | grep -v "Binary file" | grep "$keywords" --color

@@ -13,6 +13,8 @@ alias javr='java -jar'
 alias x='exit'
 
 # Directory aliases:
+alias dircount='echo $(( $(dirs | awk "{ print NF }") - 1 ))'
+alias cd='popd -0 &>/dev/null; pushd . &>/dev/null; cd'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias Documents='cd ~/Documents'
@@ -66,3 +68,4 @@ alias glm='git log master.. --oneline --no-merges'
 alias gcoo='git checkout --ours'
 alias gcot='git checkout --theirs'
 alias gcob='git-checkout-last -b'
+alias gmlc='git-merge-last-commits'
