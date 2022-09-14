@@ -1,7 +1,7 @@
 alias aliases='[ -z $EDITOR ] || ($EDITOR $HOME/.bash_aliases && source $HOME/.bash_aliases)'
 alias bashrc='[ -z $EDITOR ] || ($EDITOR $HOME/.bashrc && source $HOME/.bashrc)'
 alias update='source $HOME/.bashrc'
-
+alias clj='clojure'
 # Shortcuts for basic commands:
 alias inst='sudo apt-get install'
 alias snano='sudo nano'
@@ -36,7 +36,7 @@ alias unstfu='dconf write /org/gnome/desktop/notifications/show-banners true'
 alias findcmd='dpkg -l | grep'
 alias myip='curl http://ipecho.net/plain; echo'
 alias fixbt='sudo rmmod btusb && sudo modprobe btusb'
-alias fixau='sudo pulseaudio -k && sudo alsa force-reload'
+alias fixau='pulseaudio -k && sudo alsa force-reload'
 
 # Git:
 alias gc='git commit'
@@ -54,7 +54,9 @@ alias gm='git merge'
 alias gb='git branch'
 alias gf='git fetch origin'
 alias gfm='git fetch origin master:master' # Update master branch from any other branch without checkout.
+alias gfd='git fetch origin develop:develop'
 alias grem='gfm && git rebase master'
+alias gred='gfd && git rebase develop'
 alias gbl='git branch --list'
 alias gbr='git branch --remote'
 alias gl='git log'
@@ -69,3 +71,4 @@ alias gcoo='git checkout --ours'
 alias gcot='git checkout --theirs'
 alias gcob='git-checkout-last -b'
 alias gmlc='git-merge-last-commits'
+alias git-reset-remote='git fetch origin && git reset --hard origin/$(git branch --show)'
