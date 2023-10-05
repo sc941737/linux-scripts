@@ -6,7 +6,8 @@ process=$(ps -e | grep $1 | head -n 1 | awk '{print $1}')
 echo "Killing process:"
 echo "$process"
 
-kill $(echo $process | awk '{ print $1 }')
+processPid=$(echo $process | awk '{ print $1 }')
+kill -9 $processPid
 echo "Process killed."
 
 exit
