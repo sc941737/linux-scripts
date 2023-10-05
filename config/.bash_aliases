@@ -11,6 +11,7 @@ alias search='apt-cache search'
 alias rm='rm -i'
 alias javr='java -jar'
 alias x='exit'
+alias nala='sudo nala'
 
 # Directory aliases:
 alias dircount='echo $(( $(dirs | awk "{ print NF }") - 1 ))'
@@ -36,7 +37,7 @@ alias unstfu='dconf write /org/gnome/desktop/notifications/show-banners true'
 alias findcmd='dpkg -l | grep'
 alias myip='curl http://ipecho.net/plain; echo'
 alias fixbt='sudo rmmod btusb && sudo modprobe btusb'
-alias fixau='pulseaudio -k && sudo alsa force-reload'
+alias fixau='pulseaudio -k; sudo alsa force-reload'
 
 # Git:
 alias gc='git commit'
