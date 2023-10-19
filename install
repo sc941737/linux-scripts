@@ -4,7 +4,7 @@ general="general scripts"
 config="bash configurations and aliases"
 kali="Kali scripts"
 dev="development scripts"
-dirPath=$(find $HOME/ -name linux-scripts)
+dirPath=$(dirname $0)
 
 #TODO get interface from NetworkManager config
 
@@ -21,7 +21,7 @@ function donemsg(){
 }
 
 function cpdir(){
-	copymsg "$1" && sudo cp -r $dirPath/$2/. /usr/local/bin/ && donemsg
+	copymsg "$1" && echo "export PATH=$dirPath/$2:$PATH" >> $HOME/.bashrc && donemsg
 }
 
 function cpgeneral(){
@@ -29,7 +29,10 @@ function cpgeneral(){
 }
 
 function cpconfig(){
-	copymsg "$config" && sudo cp -r $dirPath/config/. $HOME/ && donemsg
+	copymsg "$config" 
+	echo "source $dirPath/config/.bashrc" >> $HOME/.bashrc
+	echo "source $dirPath/config/.bash_aliases" >> $HOME/.bashrc
+	donemsg
 }
 
 function cpkali(){
@@ -53,7 +56,6 @@ else
 fi
 
 source $HOME/.bashrc
-source $HOME/.bash_aliases
 
 echo "All done."
 
