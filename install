@@ -21,7 +21,7 @@ function donemsg(){
 }
 
 function cpdir(){
-	copymsg "$1" && echo "export PATH=$dirPath/$2:$PATH" >> $HOME/.bashrc && donemsg
+	copymsg "$1" && echo "export PATH=$dirPath/$2:\$PATH" >> $HOME/.bashrc && donemsg
 }
 
 function cpgeneral(){
