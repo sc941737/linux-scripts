@@ -4,7 +4,7 @@ general="general scripts"
 config="bash configurations and aliases"
 kali="Kali scripts"
 dev="development scripts"
-dirPath=$(dirname $0)
+dirPath=$(find $HOME -name linux-scripts)
 
 #TODO get interface from NetworkManager config
 
