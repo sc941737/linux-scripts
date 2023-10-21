@@ -8,7 +8,7 @@ flags=(-d --delim)
 # Input from args
 for line in "$@"; do
 	[[ "$line" =~ "$delim"  ]] || continue
-	echo "${line%%$delim*}"
+	echo "${line##*$delim}"
 done
 
 [ $noStdin ] && exit 0
@@ -16,5 +16,5 @@ done
 # Input from stdin
 while read line; do 
 	[[ "$line" =~ "$delim"  ]] || continue
-	echo "${line%%$delim*}"
+	echo "${line##*$delim}"
 done < "/dev/stdin"

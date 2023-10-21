@@ -6,8 +6,9 @@ flags=(-d --delim)
 [ "$#" -gt 0 ] && noStdin=true
 
 # Input from args
-for item in "$@"; do
-	echo "${item#*$delim}"
+for line in "$@"; do
+	[[ "$line" =~ "$delim"  ]] || continue
+	echo "${line#*$delim}"
 done
 
 [ $noStdin ] && exit 0
