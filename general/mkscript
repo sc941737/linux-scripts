@@ -1,21 +1,19 @@
 #!/bin/bash
 
 name=$1
-scriptdir=/usr/local/bin/
-path=$scriptdir$name
+scriptdir="$(dirname $0)/"
 
-[ -z $name ] && printf "ERROR: Please specify a name, e.g.:\n\tmkscript scriptname\n" && exit 1
+[ -z $name ] && printf "ERROR: Please specify a name or path, e.g.:\n\tmkscript scriptname\n" && exit 1
+[[ "$name" =~ "/" ]] && path="$name" || path=$scriptdir$name
 
 function defaultEditor(){
-	sudo nano -l $1
+	nano -l $1
 }
 
 function runEditor(){
-	[ -z $EDITOR ] && defaultEditor $path || sudo $EDITOR $path
+	[ -z $EDITOR ] && defaultEditor $path || $EDITOR $path
 }
 
-echo "#!/bin/bash" > $HOME/$name
-file=$HOME/$1
-sudo chmod +x $file
-sudo mv $file $scriptdir
-runEditor && echo "Script $name created in $scriptdir" && exit 0
+echo "#!/bin/bash" > $path
+chmod +x $path
+runEditor && echo "Script created at path $path" && exit 0
