@@ -1,0 +1,10 @@
+#!/bin/bash
+
+delim=' '
+flags=(-d --delim)
+[[ " ${flags[@]} " =~ " $1 " ]] && shift && delim=$1 && shift
+
+while read line; do 
+	[[ "$line" =~ "$delim"  ]] || continue
+	echo "${line%%$delim*}"
+done < "${1:-/dev/stdin}"
