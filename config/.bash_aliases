@@ -1,17 +1,16 @@
 alias aliases='[ -z $EDITOR ] || ($EDITOR $HOME/.bash_aliases && source $HOME/.bash_aliases)'
 alias bashrc='[ -z $EDITOR ] || ($EDITOR $HOME/.bashrc && source $HOME/.bashrc)'
-alias update='source $HOME/.bashrc'
+alias updaterc='source $HOME/.bashrc'
 alias clj='clojure'
 # Shortcuts for basic commands:
-alias inst='sudo apt-get install'
-alias snano='sudo nano'
-alias snal='sudo nano -l'
+alias inst='sudo nala install'
 alias svim='sudo vim'
 alias search='apt-cache search'
-alias rm='rm -i'
+alias rm='trash'
 alias javr='java -jar'
 alias x='exit'
 alias nala='sudo nala'
+alias pkill='pkill -ei'
 
 # Directory aliases:
 alias dircount='echo $(( $(dirs | awk "{ print NF }") - 1 ))'
@@ -21,8 +20,8 @@ alias ...='cd ../..'
 alias Documents='cd ~/Documents'
 alias Downloads='cd ~/Downloads'
 alias Desktop='cd ~/Desktop'
-alias clos='cd /usr/local/bin/'
 alias repos='cd ~/repos'
+alias trashdir='cd .local/share/Trash/files'
 
 # Shortcuts for specific app run configurations:
 alias atom='sudo atom --no-sandbox'
