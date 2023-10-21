@@ -3,8 +3,17 @@
 delim=' '
 flags=(-d --delim)
 [[ " ${flags[@]} " =~ " $1 " ]] && shift && delim=$1 && shift
+[ "$#" -gt 0 ] && noStdin=true
 
+# Input from args
+for item in "$@"; do
+	echo "${item#*$delim}"
+done
+
+[ $noStdin ] && exit 0
+
+# Input from stdin
 while read line; do 
 	[[ "$line" =~ "$delim"  ]] || continue
 	echo "${line#*$delim}"
-done < "${1:-/dev/stdin}"
+done < "/dev/stdin"
