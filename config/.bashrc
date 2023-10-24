@@ -126,6 +126,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Bash options
+shopt -s autocd
+shopt -s histappend # Shared history between shells
+bind Space:magic-space
+
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "/home/d/.sdkman/bin/sdkman-init.sh" ]] && source "/home/d/.sdkman/bin/sdkman-init.sh"

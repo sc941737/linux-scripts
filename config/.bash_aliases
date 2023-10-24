@@ -11,17 +11,18 @@ alias javr='java -jar'
 alias x='exit'
 alias nala='sudo nala'
 alias pkill='pkill -ei'
+alias mkin='sudo make clean install'
 
 # Directory aliases:
 alias dircount='echo $(( $(dirs | awk "{ print NF }") - 1 ))'
 alias cd='popd -0 &>/dev/null; pushd . &>/dev/null; cd'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias Documents='cd ~/Documents'
-alias Downloads='cd ~/Downloads'
-alias Desktop='cd ~/Desktop'
-alias repos='cd ~/repos'
+alias docs='cd ~/Documents'
+alias down='cd ~/Downloads'
 alias trashdir='cd .local/share/Trash/files'
+alias sl='cd $HOME/.config/suckless'
+
+# Convenience utils:
+alias cpo="fc -s | sed -z '$ s/\n$//' | xclip -sel clipboard" # Rerun last command, remove trailing newline from output, copy output to clipboard
 
 # Shortcuts for specific app run configurations:
 alias atom='sudo atom --no-sandbox'
